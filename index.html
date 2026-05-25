@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelurahan Jimbung</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar-wrapper">
+        <div class="nav-left">
+            <a href="index.html" class="nav-brand">
+                <i class="fa-solid fa-leaf"></i> Kelurahan Jimbung
+            </a>
+        </div>
+
+        <nav class="nav-pill-center">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="#" onclick="alert('Fitur layanan masih dalam pengembangan')">Layanan</a></li>
+                <li><a href="galeri.html">Galeri</a></li>
+                <li><a href="unduhan.html">Unduhan</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-right">
+            <button id="theme-toggle" class="theme-btn">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>Selamat Datang di Website Kelurahan Jimbung</h1>
+            <p>Mewujudkan pelayanan masyarakat yang transparan, inovatif, dan responsif melalui portal digital terpadu.
+            </p>
+
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="Apa yang sedang anda cari?">
+            </div>
+
+            <div class="hero-gallery-container">
+                <div class="gallery-polaroid card-1"><img src="assets/gambar/card1.jpg" alt="Foto 1"></div>
+                <div class="gallery-polaroid card-2"><img src="assets/gambar/card2.jpg" alt="Foto 2"></div>
+
+                <div class="gallery-polaroid card-3"><img src="assets/gambar/card3.jpg" alt="Foto 3"></div>
+                <div class="gallery-polaroid card-4"><img src="assets/gambar/card4.jpg" alt="Foto 4"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="content-wrapper"> <!-- TAMBAHAN -->
+            <div class="info-grid">
+
+                <!-- KIRI -->
+                <div class="left-section">
+                    <img src="assets/gambar/info.jpg" class="main-image">
+                </div>
+
+                <!-- TENGAH -->
+                <div class="middle-section">
+
+                    <div class="about-wrapper">
+                        <div class="about-badge">TENTANG JIMBUNG</div>
+
+                        <div class="about-content">
+                            <p>Desa Jimbung merupakan wilayah pedesaan terbesar dan terpadat di Kecamatan Kalikotes,
+                                Kabupaten Klaten, Jawa Tengah. Selain dikenal dengan kegotongroyongan warganya yang
+                                kuat, desa ini memiliki potensi besar sebagai destinasi Desa Wisata berbasis budaya dan
+                                alam,
+                                yang terkenal lewat objek wisata ikonik seperti Sendang Bulus Jimbung serta tradisi
+                                tahunan Syawalan yang selalu ramai dikunjungi masyarakat luas.</p>
+                        </div>
+                    </div>
+
+                    <div class="jimbung-section">
+                        <div class="jimbung-card">
+
+                            <div class="jimbung-item">
+                                <i class="fa-solid fa-file-lines"></i>
+                                <p>Pelayanan</p>
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <div class="jimbung-item">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                                <p>Wisata</p>
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <div class="jimbung-item">
+                                <i class="fa-solid fa-bus"></i>
+                                <p>Transportasi</p>
+                            </div>
+
+                        </div>
+
+                        <div class="side-label">
+                            ADA APA DI JIMBUNG
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- KANAN (PINDAH KE SINI) -->
+                <div class="stats-container">
+
+                    <div class="info-card stat-card">
+                        <p>Total Penduduk</p>
+                        <h2>5.432 <span>Jiwa</span></h2>
+                    </div>
+
+                    <div class="info-card stat-card">
+                        <p>Luas Wilayah</p>
+                        <h2>120 <span>Hektar</span></h2>
+                    </div>
+
+                    <div class="info-card stat-card">
+                        <p>Jumlah Dusun</p>
+                        <h2>33 <span>Dusun</span></h2>
+                    </div>
+
+                    <div class="info-card stat-card">
+                        <p>Jumlah RT/RW</p>
+                        <h2>107 <span>RT</span> 29 <span>RW</span></h2>
+                    </div>
+
+                </div> <!-- info-grid TUTUP DI SINI -->
+            </div> <!-- content-wrapper -->
+        </div>
+
+        <!-- PINDAH MAP KE LUAR -->
+        <section class="map-section">
+            <div class="map-wrapper">
+
+                <h2>Lokasi Kelurahan Jimbung</h2>
+                <p>Temukan lokasi kantor kelurahan Jimbung melalui peta berikut.</p>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps?q=Jimbung,Klaten&output=embed" allowfullscreen=""
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <a href="https://www.google.com/maps?q=Jimbung,Klaten" target="_blank" class="map-btn">
+                    Buka di Google Maps
+                </a>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- KIRI -->
+        <div class="footer-left">
+            <img src="assets/gambar/logo-jimbung.png" class="footer-logo">
+
+            <p class="footer-desc">
+                Website resmi Kelurahan Jimbung sebagai media informasi, pelayanan,
+                dan transparansi kepada masyarakat secara digital.
+            </p>
+
+            <div class="footer-social">
+    <a href="https://www.facebook.com/pages/Kelurahan-Desa-Jimbung/654755591392489" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://www.instagram.com/desajimbung/" target="_blank">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://www.youtube.com/@visitdesajimbung2741" target="_blank">
+        <i class="fab fa-youtube"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/tag/jimbung" target="_blank">
+        <i class="fab fa-tiktok"></i>
+    </a>
+</div>
+        </div>
+
+        <!-- TENGAH (KONTAK) -->
+        <div class="footer-center">
+            <h4>Kontak</h4>
+
+            <div class="footer-contact">
+
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>0812-3456-7890</p>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>jimbung@email.com</p>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Klaten, Jawa Tengah</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- KANAN (MENU) -->
+        <div class="footer-right">
+            <h4>Menu</h4>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="#" onclick="alert('Fitur layanan masih dalam pengembangan')">Layanan</a></li>
+                <li><a href="galeri.html">Galeri</a></li>
+                <li><a href="unduhan.html">Unduhan</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 Kelurahan Jimbung. All rights reserved.</p>
+    </div>
+
+</footer>
+
+    <script src="javascript.js"></script>
+</body>
+
+</html>

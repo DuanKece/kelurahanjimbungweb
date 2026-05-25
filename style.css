@@ -1,0 +1,1268 @@
+/* --- 1. SETUP & VARIABEL TEMA --- */
+:root {
+    --bg-main: #f5fdf9;
+    --bg-card: #ffffff;
+    --text-main: #ffffff;
+    --primary-dark: #0f3d3e;
+    --primary-light: #155556;
+    --text-light: #ffffff;
+    --text-muted: #6b7280;
+    --search-bg: #dcb38a;
+    --search-text: #4a3f35;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0f3d3e;
+    color: #ffffff;
+}
+
+/* --- 2. NAVBAR (Pill Shape / Mengambang) --- */
+/* Container Utama */
+.navbar-wrapper {
+    position: fixed;
+    top: 18px;
+    left: 0;
+    width: 100%;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between; /* Mendorong elemen ke kiri, tengah, kanan */
+    align-items: center;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+/* kondisi disembunyikan */
+.navbar-hide {
+    transform: translateY(-150%);
+}
+
+/* Wadah Lonjong Menu */
+.nav-pill-center {
+    background-color: #124e4e;
+    padding: 12px 40px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center; /* Memastikan isi di dalam pil ke tengah */
+}
+
+/* Navigasi Link */
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center; /* Memastikan teks link ke tengah */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    white-space: nowrap;
+
+    padding: 8px 18px; /* 🔥 bikin bentuk pill */
+    border-radius: 999px; /* 🔥 lonjong */
+
+    transition: all 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0; /* Lebar awal 0 agar tidak terlihat */
+    height: 2.5px; /* Ketebalan garis */
+    bottom: 0;
+    left: 50%;
+    background-color: #4ade80; /* Warna hijau terang untuk garis */
+    border-radius: 5px; /* Ujung garis agak membulat */
+    transition: all 0.3s ease-in-out; /* Kecepatan animasi mulus */
+    transform: translateX(-50%); /* Memastikan garis melebar dari titik tengah */
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    color: #4ade80;
+}
+
+.nav-links a.active {
+    background: linear-gradient(135deg, #00c9a7, #00b894);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Mengatur ukuran area sisi kiri dan kanan agar seimbang */
+.nav-left, .nav-right {
+    flex: 1; /* Memberikan porsi ruang yang sama */
+}
+
+.nav-right {
+    display: flex;
+    justify-content: flex-end; /* Tombol ke paling kanan */
+}
+
+/* Logo di kiri */
+.nav-brand {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-brand:hover {
+    opacity: 0.8;
+}
+
+
+
+/* Tombol tema di kanan */
+.theme-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    background-color: #124e4e; /* Opsional: beri latar sama dengan menu jika ingin terlihat seperti tombol */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.theme-btn i {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* efek pas hover (opsional) */
+.theme-btn:hover i {
+    transform: scale(1.1);
+}
+
+/* --- 3. HERO SECTION (Background) --- */
+.hero {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    
+    /* UBAH PADDING INI: Dibesarkan agar teks "Selamat Datang" tidak tertutup navbar */
+    padding-top: 140px; 
+    
+    /* Ganti 'header.jpg' dengan nama gambarmu */
+    background-image: 
+        linear-gradient(rgba(15, 61, 62, 0.4), rgba(15, 61, 62, 0.7)),
+        url('assets/gambar/header1.jpg'); 
+        
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 20px;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* --- 4. SEARCH BAR (Gaya Surabaya) --- */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--search-bg);
+    border-radius: 50px;
+    padding: 10px 25px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.search-icon {
+    color: var(--search-text);
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--search-text);
+    font-size: 1.1rem;
+    padding: 8px 0;
+}
+
+.search-bar input::placeholder {
+    color: rgba(74, 63, 53, 0.7);
+}
+
+/* ========================================================
+   FINAL CODE: TUMPUKAN KARTU POLAROID (PASTILAH DI TENGAH)
+   ======================================================== */
+.hero-gallery-container {
+    position: absolute;
+    bottom: -100px; /* Jarak turun menembus batas hijau */
+    left: 50%;
+    transform: translateX(-50%); /* Mengunci container tepat di tengah layar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 350px; 
+    z-index: 20; 
+}
+
+.gallery-polaroid {
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Titik jangkar dimulai tepat dari tengah-tengah container */
+    
+    /* Ukuran kartu besar */
+    width: 220px;
+    height: 290px;
+    background-color: #ffffff;
+    padding: 10px 10px 40px 10px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    
+    /* Deklarasi Variabel Default untuk Animasi */
+    --x-offset: 0px;
+    --y-offset: 0px;
+    --rotate: 0deg;
+    --scale: 1;
+    
+    /* Menggabungkan -50% (untuk centering) dengan variabel pergeseran */
+    transform: translateX(calc(-50% + var(--x-offset))) translateY(var(--y-offset)) rotate(var(--rotate)) scale(var(--scale));
+    transform-origin: bottom center;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+    cursor: pointer;
+}
+
+.gallery-polaroid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* --- KONDISI AWAL: SEMUA KARTU RAPI DI TENGAH (Masing-masing diberi offset tipis agar natural) --- */
+.card-1 { --x-offset: -10px; --rotate: -5deg; z-index: 1; }
+.card-2 { --x-offset: -4px;  --rotate: -2deg; z-index: 2; }
+.card-3 { --x-offset: 4px;   --rotate: 2deg;  z-index: 3; }
+.card-4 { --x-offset: 10px;  --rotate: 5deg;  z-index: 4; }
+
+/* --- KONDISI KETIKA CONTAINER DISOROT (MEKAR SEIMBANG KIRI & KANAN) --- */
+.hero-gallery-container:has(.gallery-polaroid:hover) .gallery-polaroid {
+    --y-offset: -15px;
+}
+
+.hero-gallery-container:has(.gallery-polaroid:hover) .card-1 {
+    --x-offset: -330px;
+    --rotate: -12deg;
+}
+
+.hero-gallery-container:has(.gallery-polaroid:hover) .card-2 {
+    --x-offset: -110px;
+    --rotate: -5deg;
+}
+
+.hero-gallery-container:has(.gallery-polaroid:hover) .card-3 {
+    --x-offset: 110px;
+    --rotate: 5deg;
+}
+
+.hero-gallery-container:has(.gallery-polaroid:hover) .card-4 {
+    --x-offset: 330px;
+    --rotate: 12deg;
+}
+
+/* --- EFEK HOVER INDIVIDUAL: SAAT SATU KARTU SPESIFIK DISOROT MOUSE --- */
+.gallery-polaroid:hover {
+    --y-offset: -50px !important; /* Naik lebih tinggi melewati kartu lain */
+    --scale: 1.12 !important;     /* Ukuran membesar sedikit */
+    --rotate: 0deg !important;    /* Posisi menjadi tegak lurus sempurna */
+    z-index: 100 !important;      /* Maju ke urutan paling depan dari semua kartu */
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4); /* Bayangan lebih dramatis */
+}
+
+/* =========================================
+   MAIN CONTENT (FIX FINAL)
+   ========================================= */
+
+.main-content {
+    background-color: #1b5e57; /* warna hijau lu sekarang */
+
+    /* 🔥 bikin melengkung di atas */
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+
+    /* 🔥 biar naik ke atas nutup hero */
+    margin-top: 10px;
+
+    /* 🔥 kasih bayangan */
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25);
+
+    /* biar isi ga nempel pinggir */
+    padding-top: 140px;
+
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 80px;
+    margin-top: -50px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr 300px; /* kiri - tengah - kanan */
+    gap: 30px;
+    align-items: start; /* ⬅️ penting biar gak turun */
+}
+
+/* Desain Kartu Informasi & Statistik */
+.info-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    color: #fff;
+}
+
+/* =====================
+   BAGIAN KIRI (GAMBAR)
+===================== */
+
+.left-section img {
+    width: 100%;
+    height: 515px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+/* =====================
+   BAGIAN TENGAH
+===================== */
+.middle-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* WRAPPER TENTANG */
+.about-wrapper {
+    display: flex;
+    align-items: stretch;
+    gap: 15px;
+}
+
+/* BADGE VERTIKAL */
+.about-badge {
+    background: #0f5c56;
+    color: white;
+    padding: 20px 10px;
+    border-radius: 20px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ISI TENTANG */
+.about-content {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 25px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* WRAPPER */
+.jimbung-section {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+/* CARD BESAR */
+.jimbung-card {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border-radius: 25px;
+    padding: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* ITEM */
+.jimbung-item {
+    text-align: center;
+    color: white;
+}
+
+.jimbung-item i {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+/* GARIS PEMISAH */
+.divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(255,255,255,0.2);
+}
+
+/* LABEL SAMPING */
+.side-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 15px 8px;
+    border-radius: 15px;
+    font-weight: 600;
+}
+
+/* =====================
+   FEATURE CARD
+===================== */
+.feature-card {
+    background: #124e4e;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+}
+
+.feature-item {
+    text-align: center;
+    font-weight: 500;
+}
+
+/* =====================
+   BAGIAN KANAN (STATS)
+===================== */
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center; /* ⬅️ INI KUNCI */
+}
+
+.stat-card {
+    position: relative;
+    width: 100%;
+    max-width: 260px;
+
+}
+
+.stat-card p {
+    color: #cbd5e1;
+    font-weight: 600;
+}
+
+.stat-card h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.stat-card span {
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+/* ICON (KANAN) */
+.stat-card i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    opacity: 0.2;
+}
+/* =====================
+   BAGIAN MAP
+===================== */
+
+.map-section {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+
+    /* Ganti 'header.jpg' dengan nama gambarmu */
+    background-image: 
+        linear-gradient(rgba(15, 61, 62, 0.4), rgba(15, 61, 62, 0.7)),
+        url('assets/gambar/header1.jpg'); 
+
+    background-size: cover;
+    background-position: center;
+}
+
+.map-wrapper {
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+
+    background: rgba(255,255,255,0.1);
+    padding: 40px;
+    border-radius: 25px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.map-wrapper h2 {
+    margin-bottom: 10px;
+}
+
+.map-wrapper p {
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* tombol */
+.map-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 20px;
+    background: #4ade80;
+    color: #000;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.map-btn:hover {
+    background: #22c55e;
+}
+
+.footer {
+    margin-top: 50px;
+    background: #0f3d3e;
+    color: #fff;
+    padding: 50px 20px 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* =========================
+   FOOTER MAIN
+   ========================= */
+
+.footer {
+    background-color: #0f3f3f;
+    padding: 80px 20px 25px;
+    color: #fff;
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    flex: 1;
+    min-width: 220px;
+}
+
+/* ====================
+   LEFT
+==================== */
+.footer-logo {
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+.footer-desc {
+    line-height: 1.8;
+    font-size: 14px;
+    color: #cbd5d1;
+}
+
+.footer-social {
+    margin-top: 15px;
+}
+
+.footer-social a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    margin-right: 10px;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    transform: translateY(-5px);
+}
+
+/* ====================
+   CENTER (KONTAK)
+==================== */
+.footer-center h4 {
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.contact-item i {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-item p {
+    margin: 0;
+    color: #ccc;
+}
+
+/* ====================
+   RIGHT (MENU)
+==================== */
+.footer-right h4 {
+    margin-bottom: 20px;
+}
+
+.footer-right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-right ul li {
+    margin-bottom: 12px;
+    font-size: 17px;
+}
+
+.footer-right ul li a {
+    text-decoration: none;
+    color: #ccc;
+    transition: 0.3s;
+}
+
+.footer-right ul li a:hover {
+    color: #4ade80;
+}
+
+/* ====================
+   BOTTOM
+==================== */
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 15px;
+    font-size: 13px;
+    color: #aaa;
+}
+
+/* ====================
+   RESPONSIVE
+==================== */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* =========================
+   PROFIL + SEJARAH
+   ========================= */
+
+.profil-hero {
+    height: 320px;
+
+    background: url('assets/gambar/info.jpg') center/cover no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* dari center jadi atas */
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    /* 🔥 INI YANG BENER */
+    width: 100%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-top: -150px; /* SESUAI TINGGI NAVBAR LU */
+    padding-top: 120px; /* biar teks ga ketutup */
+    padding-top: 120px; /* atur tinggi teks */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+/* 🔥 INI KUNCI NYA */
+.hero-bg {
+    position: absolute;
+    top: -150px; /* 🔥 NAIKIN GAMBAR SEENAKNYA */
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+/* overlay gelap */
+.profil-hero .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+/* teks */
+.profil-hero h1 {
+    position: relative;
+    color: #fff;
+    font-size: 48px;
+    margin: 0;
+    z-index: 2;
+}
+
+.profil-hero p {
+    position: relative;
+    color: #ddd;
+    margin-top: 10px;
+    z-index: 2;
+}
+
+.profil-section {
+    background-color: #1b5e57;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    text-align: center;
+
+    margin-top: 65px; /* atur jaraknya */
+}
+
+/* PARAGRAF */
+.profil-section p {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* =========================
+   CARD SEJARAH
+   ========================= */
+.sejarah-card {
+    position: relative;
+
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    padding: 30px;
+    border-radius: 18px;
+
+    border-left: 5px solid #4ade80; /* 🔥 garis kiri */
+
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+
+    max-width: 800px;
+    margin: 20px auto;
+
+    transition: all 0.3s ease;
+}
+
+/* HOVER */
+.sejarah-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    border-left-color: #22c55e;
+}
+
+/* TEXT */
+.sejarah-card p {
+    text-align: center;
+    line-height: 1.7;
+    color: #ddd;
+}
+
+
+/* =========================
+   VISI MISI
+   ========================= */
+
+.visi-misi {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.visi-misi h2 {
+    margin-bottom: 30px;
+    font-size: 26px;
+}
+
+.visi-misi p {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* GRID */
+.visi-misi-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* =========================
+   CARD VISI MISI (UPGRADE)
+   ========================= */
+
+.visi,
+.misi {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    padding: 30px;
+    border-radius: 18px;
+    color: #fff;
+
+    border-left: 5px solid #4ade80; /* 🔥 garis kiri */
+
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+
+    transition: all 0.3s ease;
+}
+
+/* HOVER EFFECT 🔥 */
+.visi:hover,
+.misi:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    border-left-color: #22c55e;
+}
+
+/* JUDUL */
+.visi h3,
+.misi h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* ISI */
+.visi p {
+    line-height: 1.7;
+    color: #ddd;
+}
+
+/* LIST MISI */
+.misi ul {
+    text-align: left;
+    padding-left: 20px;
+    line-height: 1.7;
+    color: #ddd;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+    .visi-misi-container {
+        grid-template-columns: 1fr;
+    }
+}
+/* =========================
+   HERO GALERI
+   ========================= */
+.galeri-hero {
+    height: 320px;
+
+    background: url('assets/gambar/info.jpg') center/cover no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* dari center jadi atas */
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    /* 🔥 INI YANG BENER */
+    width: 100%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-top: -150px; /* SESUAI TINGGI NAVBAR LU */
+    padding-top: 120px; /* biar teks ga ketutup */
+    padding-top: 120px; /* atur tinggi teks */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* OVERLAY GELAP */
+.galeri-hero .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+/* TEXT */
+.galeri-hero h1 {
+    position: relative;
+    color: #fff;
+    font-size: 42px;
+    font-weight: 700;
+    z-index: 2;
+}
+
+.galeri-hero p {
+    position: relative;
+    color: #ddd;
+    margin-top: 10px;
+    z-index: 2;
+}
+
+
+/* SLIDER DESIGN */
+.design-showcase {
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.scroll-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.design-card {
+    min-width: 300px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+
+.design-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.design-card p {
+    padding: 10px;
+}
+
+.design-card:hover {
+    transform: scale(1.05);
+}
+
+/* GALERI GRID */
+.galeri-section {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.galeri-section h2 {
+    margin-bottom: 40px;
+}
+
+/* GRID */
+.galeri-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* CARD */
+.galeri-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.galeri-card:hover {
+    transform: translateY(-5px);
+}
+
+/* GAMBAR */
+.galeri-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* ISI TEXT */
+.galeri-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.galeri-info h3 {
+    margin-bottom: 10px;
+    color: #1b5e57;
+}
+
+.galeri-info p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.download-section {
+    max-width: 900px;
+    margin: 120px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* biar ga terlalu kosong */
+.download-section h2 {
+    margin-bottom: 10px;
+}
+
+.download-desc {
+    opacity: 0.7;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* LIST */
+.download-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* CARD */
+.download-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    padding: 20px 25px;
+    border-radius: 15px;
+
+    border-left: 4px solid #4ade80; /* aksen kiri */
+    
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+    transition: all 0.3s ease;
+}
+
+.download-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.35);
+}
+
+/* FILE INFO */
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+}
+
+.file-info i {
+    font-size: 30px;
+    color: #4ade80;
+}
+
+/* teks file */
+.file-info h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.file-info span {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* BUTTON */
+.download-btn {
+    background: linear-gradient(135deg, #22c55e, #4ade80);
+    color: #000;
+    padding: 10px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.3s ease;
+}
+
+.download-btn:hover {
+    transform: scale(1.08);
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+   ========================= */
+@media (max-width: 768px) {
+
+    /* NAVBAR */
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .nav-pill-center {
+        width: 90%;
+        padding: 8px;
+    }
+
+    /* HERO */
+    .profil-hero {
+        height: 200px;
+        padding: 20px;
+    }
+
+    .profil-hero h1 {
+        font-size: 28px;
+    }
+
+    .profil-hero p {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    /* SECTION */
+    .profil-section {
+        padding: 20px;
+    }
+
+    .profil-section h2 {
+        font-size: 20px;
+    }
+
+    /* SEJARAH CARD */
+    .sejarah-card {
+        padding: 20px;
+        font-size: 14px;
+    }
+
+    /* VISI MISI GRID */
+    .visi-misi-container {
+        grid-template-columns: 1fr;
+    }
+
+    .visi,
+    .misi {
+        padding: 20px;
+    }
+
+    /* DOWNLOAD */
+    .download-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .download-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* GALERI */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
